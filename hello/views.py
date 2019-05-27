@@ -3,15 +3,22 @@ from django.http import HttpResponse
 
 from .models import Greeting
 import requests
+import os
 
 # Create your views here.
 def index(request):
     # return HttpResponse('Hello from Python!')
-    r = requests.get('http://httpbin.org/status/418')
-    print(r.text)
-    return HttpResponse('<pre>' + r.text + '</pre>')
+
     # return render(request, "index.html")
 
+    # git demo
+#    r = requests.get('http://httpbin.org/status/418')
+#    print(r.text)
+#    return HttpResponse('<pre>' + r.text + '</pre>')
+
+    # part 11 config vars example
+    times = int(os.environ.get('TIMES', 3))
+    return HttpResponse('Hello! ' * times)
 
 def db(request):
 
